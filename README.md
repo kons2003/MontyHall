@@ -1,3 +1,9 @@
-# MontyHall
-몬티홀의 역설 실험
-[MontyHall History 1529f032cc4a427db19b1d83370e72e3.md](https://github.com/kons2003/MontyHall/files/9056205/MontyHall.History.1529f032cc4a427db19b1d83370e72e3.md)
+# MontyHall History
+
+### ver2. 2022/07/07
+
+- 프로그램 한 번 실행후 반복시 버그 수정
+- 사회자가 문을 공개할때 버그 수정
+- 문에 없는 번호를 입력했을시 버그 수정
+- 선택을 바꾸는 지문시 'n'을 입력했을 때 버그 수정
+- 확률계산 방식 추가
