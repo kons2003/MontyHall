@@ -21,15 +21,18 @@ public class MontyHall {
         System.out.printf("몬티홀의 역설에 따르면, 사회자가 염소가 있는 문을 공개한 후에 선택을 바꾸면%n" +
                 "자동차가 나올 확률이 2/3, 염소가 나올 확률이 1/3이라고 한다.%n" +
                 "자동차는 O, 염소는 X로 해서 몬티홀의 역설을 실험할 것이다.%n%n");
+
         while (flag) {
             int car = 0; // O
             int goat = 0; // X
             double cPer = 0.0; // O가 나온 확률
             double gPer = 0.0; // X가 나온 확률
             boolean opFlag = true; // 사용자가 처음 문을 고르는 while문 조건식
+
             System.out.println("\t<몬티홀의 역설>");
             System.out.println("1.직접하기 2.확률계산");
             System.out.print("원하는 방식(1~2)을 선택하세요. (종료:0)>");
+
             menu = scanner.nextInt();
             System.out.println();
 
@@ -46,7 +49,6 @@ public class MontyHall {
                         door[j] = temp;
                     }
 
-
                     while (opFlag) { // 사용자가 문을 고름
                         System.out.println("[1] [2] [3]");
                         System.out.print("1~3번 문 중에서 하나를 고르세요.>");
@@ -55,13 +57,13 @@ public class MontyHall {
 
                         while (true) {
                             op = (int) (Math.random() * door.length); // 사회자가 공개하는 문 번호 (op = 0~2)
-                            if (num1 + 1 <= door.length && op != num1 && !door[op].equals("O")) { // 사용자의 선택과 "O"를 제외한 문 하나의 결과를 보여줌
+                            if (0 < num1 + 1 && num1 + 1 <= door.length && op != num1 && !door[op].equals("O")) { // 사용자의 선택과 "O"를 제외한 문 하나의 결과를 보여줌
                                 System.out.println("당신은 " + (num1 + 1) + "번 문을 고르셨습니다.");
                                 System.out.println("사회자가 X가 있는 문 중 하나를 공개합니다.");
                                 System.out.printf("%d번 문은 %s입니다.%n", op + 1, door[op]);
                                 opFlag = false;
                                 break;
-                            } else if (num1 + 1 <= door.length && (op == num1 || door[op].equals("O"))) {
+                            } else if (0 < num1 + 1 && num1 + 1 <= door.length && (op == num1 || door[op].equals("O"))) {
                                 continue;
                             } else { // while문 처음으로 돌아가 문을 다시 고름
                                 System.out.println("잘못된 번호를 입력하셨습니다.");
@@ -72,22 +74,29 @@ public class MontyHall {
                     }
 
 
-                    while (true) {
+                    while (true) { // 사용자가 선택을 바꿀지 결정함
                         System.out.print("선택을 바꾸시겠습니까? (y/n)>");
                         str = scanner.next();
 
                         if (str.equals("y")) {
-                            System.out.printf("아쉽네요. %d번 문에는 %s가 있었습니다.%n", num1 + 1, door[num1]);
+                            if (door[num1].equals("O"))
+                                System.out.printf("축하합니다. %d번 문에는 %s가 있었습니다.%n", num1 + 1, door[num1]);
+                            else
+                                System.out.printf("아쉽네요. %d번 문에는 %s가 있었습니다.%n", num1 + 1, door[num1]);
                             break;
                         } else if (str.equals("n")) { // 사회자가 공개한 문과 사용자가 선택한 문을 제외한 문을 공개함
                             for (int i = 0; i < door.length; i++) {
                                 if (i != num1 && i != op) {
-                                    System.out.printf("축하합니다. %d번 문에는 %s가 있었습니다.%n", i + 1, door[i]);
+                                    if (door[i].equals("O"))
+                                        System.out.printf("축하합니다. %d번 문에는 %s가 있었습니다.%n", i + 1, door[i]);
+                                    else
+                                        System.out.printf("아쉽네요. %d번 문에는 %s가 있었습니다.%n", i + 1, door[i]);
                                 }
                             }
                             break;
                         } else {
                             System.out.println("y와 n 중 하나를 입력해주세요.");
+                            System.out.println();
                         }
                     }
                     System.out.println();
@@ -98,6 +107,7 @@ public class MontyHall {
 
                     System.out.println("바꿨을 경우, O와 X가 나온 횟수와 둘이 나온 확률을 구합니다.(소수점 7번째 자리 이하는 버려짐.)");
                     System.out.print("몇 번 실행하시겠습니까?>");
+
                     num2 = scanner.nextInt();
                     System.out.println();
 
@@ -130,7 +140,7 @@ public class MontyHall {
                                 }
                             }
                         }
-                    }
+                    } // 사용자가 입력한 반복횟수만큼 수행후 종료
 
                     exe = df.format(num2);
                     carExe = df.format(car);
