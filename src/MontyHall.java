@@ -29,6 +29,7 @@ public class MontyHall {
             double gPer = 0.0; // X가 나온 확률
             boolean opFlag = true; // 사용자가 처음 문을 고르는 while문 조건식
 
+            System.out.println("=======================================");
             System.out.println("\t<몬티홀의 역설>");
             System.out.println("1.직접하기 2.확률계산");
             System.out.print("원하는 방식(1~2)을 선택하세요. (종료:0)>");
@@ -79,12 +80,6 @@ public class MontyHall {
                         str = scanner.next();
 
                         if (str.equals("y")) {
-                            if (door[num1].equals("O"))
-                                System.out.printf("축하합니다. %d번 문에는 %s가 있었습니다.%n", num1 + 1, door[num1]);
-                            else
-                                System.out.printf("아쉽네요. %d번 문에는 %s가 있었습니다.%n", num1 + 1, door[num1]);
-                            break;
-                        } else if (str.equals("n")) { // 사회자가 공개한 문과 사용자가 선택한 문을 제외한 문을 공개함
                             for (int i = 0; i < door.length; i++) {
                                 if (i != num1 && i != op) {
                                     if (door[i].equals("O"))
@@ -93,6 +88,12 @@ public class MontyHall {
                                         System.out.printf("아쉽네요. %d번 문에는 %s가 있었습니다.%n", i + 1, door[i]);
                                 }
                             }
+                            break;
+                        } else if (str.equals("n")) { // 사회자가 공개한 문과 사용자가 선택한 문을 제외한 문을 공개함
+                            if (door[num1].equals("O"))
+                                System.out.printf("축하합니다. %d번 문에는 %s가 있었습니다.%n", num1 + 1, door[num1]);
+                            else
+                                System.out.printf("아쉽네요. %d번 문에는 %s가 있었습니다.%n", num1 + 1, door[num1]);
                             break;
                         } else {
                             System.out.println("y와 n 중 하나를 입력해주세요.");
